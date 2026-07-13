@@ -1,1 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WGT Caddie Pro V3</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🏌️ WGT Caddie Pro V3</h1>
+
+        <div class="card">
+
+            <label>Distance (yards)</label>
+            <input type="number" id="distance" placeholder="147">
+
+            <label>Vent (mph)</label>
+            <input type="number" id="vent" placeholder="0">
+
+            <label>Dénivelé (ft)</label>
+            <input type="number" id="elevation" placeholder="0">
+
+            <label>Température (°C)</label>
+            <input type="number" id="temperature" value="20">
+
+            <button id="calculer">
+                Calculer
+            </button>
+
+        </div>
+
+        <div class="resultat">
+
+            <h2>Club conseillé</h2>
+
+            <h3 id="club">--</h3>
+
+            <h2>Puissance</h2>
+
+            <h3 id="puissance">-- %</h3>
+
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
 
