@@ -8,44 +8,51 @@ document.getElementById("calculer").addEventListener("click", function () {
     let distanceCorrigee = distance;
 
     // Corrections
-distanceCorrigee += vent;
-distanceCorrigee += elevation / 3;
-distanceCorrigee -= (temperature - 20) * 0.5;
-    let club = "";
-    let puissance = 100;
+    distanceCorrigee += vent;
+    distanceCorrigee += elevation / 3;
+    distanceCorrigee -= (temperature - 20) * 0.5;
 
-    if (distanceCorrigee >= 180) {
-        club = "Driver";
-        puissance = Math.round((distanceCorrigee / 180) * 100);
-    } else if (distanceCorrigee >= 170) {
-        club = "Bois 3";
-        puissance = Math.round((distanceCorrigee / 170) * 100);
-    } else if (distanceCorrigee >= 160) {
-        club = "Fer 4";
-        puissance = Math.round((distanceCorrigee / 160) * 100);
-    } else if (distanceCorrigee >= 150) {
-        club = "Fer 5";
-        puissance = Math.round((distanceCorrigee / 150) * 100);
-    } else if (distanceCorrigee >= 140) {
-        club = "Fer 6";
-        puissance = Math.round((distanceCorrigee / 140) * 100);
-    } else if (distanceCorrigee >= 130) {
-        club = "Fer 7";
-        puissance = Math.round((distanceCorrigee / 130) * 100);
-    } else if (distanceCorrigee >= 120) {
-        club = "Fer 8";
-        puissance = Math.round((distanceCorrigee / 120) * 100);
-    } else if (distanceCorrigee >= 110) {
-        club = "Fer 9";
-        puissance = Math.round((distanceCorrigee / 110) * 100);
-    } else if (distanceCorrigee >= 90) {
-        club = "Pitch";
-        puissance = Math.round((distanceCorrigee / 90) * 100);
-    } else {
-        club = "Sand Wedge";
-        puissance = Math.round((distanceCorrigee / 70) * 100);
+    const clubs = [
+        { nom: "Driver", distance: 240 },
+        { nom: "Bois 3", distance: 220 },
+        { nom: "Hybride", distance: 200 },
+        { nom: "Fer 4", distance: 185 },
+        { nom: "Fer 5", distance: 175 },
+        { nom: "Fer 6", distance: 165 },
+        { nom: "Fer 7", distance: 155 },
+        { nom: "Fer 8", distance: 145 },
+        { nom: "Fer 9", distance: 135 },
+        { nom: "Pitch", distance: 120 },
+        { nom: "Gap Wedge", distance: 105 },
+        { nom: "Sand Wedge", distance: 90 },
+        { nom: "Lob Wedge", distance: 70 }
+    ];
+
+    let club = clubs[0];
+    let puissance = 100;
+    let alternative = "";
+
+    for (let i = 0; i < clubs.length; i++) {
+
+        const c = clubs[i];
+        const p = Math.round((distanceCorrigee / c.distance) * 100);
+
+        if (p <= 100) {
+            club = c;
+            puissance = p;
+
+            if (i > 0) {
+                const alt = clubs[i - 1];
+                const pAlt = Math.round((distanceCorrigee / alt.distance) * 100);
+                alternative = alt.nom + " (" + pAlt + "%)";
+            }
+
+            break;
+        }
     }
 
-    document.getElementById("club").textContent = club;
+    document.getElementById("club").textContent = club.nom;
     document.getElementById("puissance").textContent = puissance + " %";
+    document.getElementById("alternative").textContent = alternative;
+
 });
