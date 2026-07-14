@@ -1,4 +1,4 @@
-document.getElementById("calculer").addEventListener("click", function () {
+alert("NOUVEAU APP.JS CHARGE");document.getElementById("calculer").addEventListener("click", function () {
 
     const distance = parseFloat(document.getElementById("distance").value);
     const vent = parseFloat(document.getElementById("vent").value);
