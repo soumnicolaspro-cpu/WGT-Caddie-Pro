@@ -1,8 +1,4 @@
-alert("APP.JS VERSION NOUVELLE");
-
 document.getElementById("calculer").addEventListener("click", function () {
-    alert("Je fonctionne !");
-});
 
     const distance = Number(document.getElementById("distance").value);
     const vent = Number(document.getElementById("vent").value);
@@ -14,14 +10,7 @@ document.getElementById("calculer").addEventListener("click", function () {
     distanceCorrigee += elevation / 3;
     distanceCorrigee -= (temperature - 20) * 0.5;
 
-    console.log("2 - Distance :", distanceCorrigee);
-    console.log("3 - Clubs :", clubs);
-
     const resultat = trouverMeilleursClubs(distanceCorrigee, clubs);
-console.log(distanceCorrigee);
-console.log(clubs);
-console.log(resultat);
-    console.log("4 - Résultat :", resultat);
 
     document.getElementById("club").textContent = resultat.meilleur.nom;
     document.getElementById("puissance").textContent = resultat.meilleur.puissance + "%";
@@ -32,4 +21,5 @@ console.log(resultat);
     } else {
         document.getElementById("alternative").textContent = "Aucune";
     }
+
 });
