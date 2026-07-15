@@ -12,8 +12,14 @@ document.getElementById("calculer").addEventListener("click", function () {
 
     const resultat = trouverMeilleursClubs(distanceCorrigee, clubs);
 
+console.log(resultat);
+alert(resultat.meilleur.confiance);
+
+
     document.getElementById("club").textContent = resultat.meilleur.nom;
     document.getElementById("puissance").textContent = resultat.meilleur.puissance + "%";
+document.getElementById("confiance").textContent =
+    resultat.meilleur.confiance;
 
     if (resultat.alternative) {
         document.getElementById("alternative").textContent =

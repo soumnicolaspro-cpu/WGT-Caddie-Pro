@@ -2,23 +2,37 @@ function trouverMeilleursClubs(distanceCorrigee, clubs) {
 
     let resultats = [];
 
-    for (const club of clubs) {
+for (const club of clubs) {
 
-        const puissance = Math.round((distanceCorrigee / club.distance) * 100);
+    const puissance = Math.round((distanceCorrigee / club.distance) * 100);
 
-        resultats.push({
-            nom: club.nom,
-            puissance: puissance,
-            ecart: Math.abs(100 - puissance)
-        });
-    }
+    if (puissance >= 80 && puissance <= 105) {
+let confiance = "";
 
-    resultats.sort((a, b) => a.ecart - b.ecart);
+if (puissance >= 95 && puissance <= 105) {
+    confiance = "⭐⭐⭐⭐⭐ Excellent";
+} else if (puissance >= 90 && puissance < 95) {
+    confiance = "⭐⭐⭐⭐ Très bon";
+} else {
+    confiance = "⭐⭐⭐ Correct";
+}
 
-    return {
-        meilleur: resultats[0],
-        alternative: resultats[1],
-        troisieme: resultats[2]
-    };
+    resultats.push({
+        nom: club.nom,
+        puissance: puissance,
+        ecart: Math.abs(100 - puissance),
+        confiance: confiance
+    });
+}
+
+}   
+
+resultats.sort((a, b) => a.ecart - b.ecart);
+
+return {
+    meilleur: resultats[0],
+    alternative: resultats[1],
+    troisieme: resultats[2]
+};
 }
 window.trouverMeilleursClubs = trouverMeilleursClubs;
